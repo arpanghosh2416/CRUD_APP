@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 import sqlite3 as sql
-app=Flask(__name__)
-
+app=Flask(__name__,instance_relative_config=True)
+app.config.from_object('config')
 @app.route("/")
 @app.route("/index")
 def index():
@@ -53,5 +53,5 @@ def delete_user(uid):
     return redirect(url_for("index"))
     
 if __name__=='__main__':
-    app.secret_key='admin123'
+    app.secret_key='123'
     app.run(debug=True)
